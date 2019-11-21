@@ -1,8 +1,17 @@
-# Abort if the current folder is not empty
-if [ "$(ls -A ./)" ]; then
-  echo "The current directory is not empty. Aborting."
-  exit 1;
+# Check if argument was passed
+[ $# -eq 0 ] && { echo "Usage: $0 <project-name>"; exit 1; }
+
+dir="$1"
+
+# Abort if directory exists
+if [ -d $dir ]; then
+  echo "Directory '$dir' already exists. Exiting."
+  exit 1
 fi
+
+# Create a new directory
+mkdir $dir
+cd $dir
 
 # Create git repo
 git init
@@ -18,7 +27,7 @@ npm_version=$(npm -v)
 
 # Create package.json
 echo '{
-  "name": "'$1'",
+  "name": "'$dir'",
   "version": "0.0.0",
   "scripts": {
     "start": "parcel src/index.html",
@@ -33,7 +42,19 @@ echo '{
 }' > package.json
 
 # Install dependencies
-npm i -D babel-core babel-preset-env classnames @types/classnames parcel parcel-plugin-clean-dist postcss postcss-modules preact redux-zero sass typescript
+npm i -D \
+  babel-core \
+  babel-preset-env \
+  classnames \
+  @types/classnames \
+  parcel \
+  parcel-plugin-clean-dist \
+  postcss \
+  postcss-modules \
+  preact \
+  redux-zero \
+  sass \
+  typescript
 
 # Add directories
 mkdir -p src/components/App
