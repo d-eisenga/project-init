@@ -1,5 +1,8 @@
 # Check if argument was passed
-[ $# -eq 0 ] && { echo "Usage: $0 <project-name>"; exit 1; }
+if [ $# -eq 0 ]; then
+  echo "Usage: curl https://raw.githubusercontent.com/d-eisenga/project-init/master/init.sh | bash -s <project-name>"
+  exit 1
+fi
 
 dir="$1"
 
