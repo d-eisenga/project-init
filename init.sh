@@ -1,3 +1,9 @@
+# Abort if the current folder is not empty
+if [ "$(ls -A ./)" ]; then
+  echo "The current directory is not empty. Aborting."
+  exit 1;
+fi
+
 # Create git repo
 git init
 
