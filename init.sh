@@ -210,13 +210,3 @@ echo ':global {
 .button {
   margin-top: 8px;
 }' > src/components/App/styles.scss
-
-# Start dev mode
-# ==============
-if [ -x "$(command -v xdg-open)" ]; then
-  npm start & xdg-open http://localhost:1234
-elif [ -x "$(command -v open)" ]; then
-  npm start & open http://localhost:1234
-elif [ -x "$(command -v start)" ]; then
-  npm start & start http://localhost:1234
-fi
