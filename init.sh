@@ -156,7 +156,7 @@ echo "import store from '../';
 import {State} from '../../types';
 
 export const getState = () => store.getState();
-export const setState = (newState: Partial<State>) => store.setState(newState);" > src/store/actions/state.ts
+export const setState = (f: ((state: State) => Partial<State>)|Partial<State>) => store.setState(f);" > src/store/actions/state.ts
 
 # src/components/App/index.tsx
 echo "import {h} from 'preact';
